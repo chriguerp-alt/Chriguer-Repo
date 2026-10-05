@@ -1,0 +1,9 @@
+Package: com.chriguer.veritymirror
+Name: Verity (Pessoal)
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Minha copia pessoal do tweak Verity (bolinha amarela).
+Maintainer: Chriguer
+Section: Tweaks
+Filename: debs/dev.preloading.tubereplacer_2.0.1_iphoneos-arm.deb
+Size: 10240
