@@ -1,62 +1,284 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chriguer Repo</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f5f5f7;
-            color: #1d1d1f;
-            text-align: center;
-            padding: 50px 20px;
-            margin: 0;
-        }
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #86868b;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-        .btn {
-            display: block;
-            background-color: #34c759;
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 12px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            transition: background 0.2s;
-        }
-        .btn-cydia {
-            background-color: #794bc4;
-        }
-        .btn-cydia:hover {
-            background-color: #633ba3;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
+  <title>Practical 44</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="app">
 
-<div class="container">
-    <h1>Chriguer Repo</h1>
-    <p>Bem-vindo ao meu repositório oficial de tweaks!</p>
-    
-    <a class="btn btn-cydia" href="cydia://url/https://cydia.saurik.com/api/share#?source=https://https://chriguerp-alt.github.io/Chriguer-Repo/">➕ Adicionar ao Cydia</a>
-</div>
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="logo">44</div>
+        <div>
+          <strong>Practical 44</strong>
+          <small>Web Edition · 0.6</small>
+        </div>
+      </div>
 
+      <p class="nav-label">ESPAÇO DE TRABALHO</p>
+
+      <nav>
+        <button class="nav active" data-page="dashboard">⌂ Dashboard</button>
+        <button class="nav" data-page="projects">▦ Projetos</button>
+        <button class="nav" data-page="history">◷ Histórico</button>
+        <button class="nav" data-page="statistics">▥ Estatísticas</button>
+        <button class="nav" data-page="notes">✎ Anotações</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <p class="nav-label">PREFERÊNCIAS</p>
+        <button class="nav" id="themeButton">☾ Alternar tema</button>
+        <button class="nav" data-page="settings">⚙ Configurações</button>
+        <small class="sidebar-footer">Practical 44 · 2026</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button id="menuButton" class="menu-button">☰</button>
+        <div>
+          <span class="eyebrow">SEU PAINEL DE CONTROLE</span>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <span class="version">v0.6</span>
+      </header>
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="dashboard">
+        <div class="section-heading">
+          <div>
+            <h2>Visão geral</h2>
+            <p>Acompanhe suas ideias e projetos.</p>
+          </div>
+          <button class="primary" id="quickAdd">＋ Novo projeto</button>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span>Total de projetos</span>
+            <strong id="totalProjects">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Projetos ativos</span>
+            <strong id="activeProjects">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Projetos pausados</span>
+            <strong id="pausedProjects">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Atividades</span>
+            <strong id="totalActivities">0</strong>
+          </article>
+        </div>
+
+        <div class="columns">
+          <article class="panel">
+            <h3>Projetos recentes</h3>
+            <div id="recentProjects"></div>
+          </article>
+          <article class="panel">
+            <h3>Atividade recente</h3>
+            <div id="recentActivities"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROJETOS -->
+      <section class="page" id="projects">
+        <div class="section-heading">
+          <div>
+            <h2>Projetos</h2>
+            <p>Gerencie todos os seus projetos.</p>
+          </div>
+          <button class="primary" id="addProject">＋ Novo projeto</button>
+        </div>
+
+        <div class="toolbar">
+          <input id="searchProjects" placeholder="Pesquisar projetos...">
+          <select id="filterProjects">
+            <option value="all">Todos</option>
+            <option value="active">Ativos</option>
+            <option value="paused">Pausados</option>
+            <option value="completed">Concluídos</option>
+          </select>
+        </div>
+
+        <div id="projectList" class="project-grid"></div>
+      </section>
+
+      <!-- HISTÓRICO -->
+      <section class="page" id="history">
+        <div class="section-heading">
+          <div>
+            <h2>Histórico de atividades</h2>
+            <p>Veja o que aconteceu nos seus projetos.</p>
+          </div>
+          <button class="secondary" id="clearHistory">Limpar histórico</button>
+        </div>
+        <article class="panel">
+          <div id="historyList"></div>
+        </article>
+      </section>
+
+      <!-- ESTATÍSTICAS -->
+      <section class="page" id="statistics">
+        <div class="section-heading">
+          <div>
+            <h2>Estatísticas</h2>
+            <p>Dados gerais do seu espaço de trabalho.</p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span>Concluídos</span>
+            <strong id="completedCount">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Taxa de conclusão</span>
+            <strong id="completionRate">0%</strong>
+          </article>
+          <article class="stat-card">
+            <span>Criados este mês</span>
+            <strong id="monthlyCount">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Caracteres nas notas</span>
+            <strong id="notesCount">0</strong>
+          </article>
+        </div>
+
+        <div class="columns">
+          <article class="panel">
+            <h3>Distribuição dos projetos</h3>
+            <div id="statisticsBars"></div>
+          </article>
+          <article class="panel">
+            <h3>Resumo geral</h3>
+            <div id="statisticsSummary"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ANOTAÇÕES -->
+      <section class="page" id="notes">
+        <div class="section-heading">
+          <div>
+            <h2>Bloco de anotações</h2>
+            <p>Suas ideias salvas automaticamente.</p>
+          </div>
+          <span class="saved-label" id="saveStatus">Salvo</span>
+        </div>
+
+        <article class="panel notes-panel">
+          <textarea id="notesArea"
+            placeholder="Escreva suas ideias aqui..."></textarea>
+          <div class="notes-footer">
+            <span>Salvamento automático</span>
+            <span id="characterCount">0 caracteres</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- CONFIGURAÇÕES -->
+      <section class="page" id="settings">
+        <div class="section-heading">
+          <div>
+            <h2>Configurações</h2>
+            <p>Personalize e gerencie seus dados.</p>
+          </div>
+        </div>
+
+        <div class="settings-grid">
+          <article class="panel">
+            <h3>Backup e restauração</h3>
+            <p>Salve todos os seus dados em um arquivo JSON.</p>
+            <button class="primary" id="exportBackup">↓ Exportar backup</button>
+            <label class="secondary file-button">
+              ↑ Restaurar backup
+              <input type="file" id="importBackup" accept=".json">
+            </label>
+          </article>
+
+          <article class="panel">
+            <h3>Importar e exportar</h3>
+            <p>Transfira seus projetos individualmente.</p>
+            <button class="secondary" id="exportProjects">Exportar projetos</button>
+            <label class="secondary file-button">
+              Importar projetos
+              <input type="file" id="importProjects" accept=".json">
+            </label>
+          </article>
+
+          <article class="panel">
+            <h3>Aparência</h3>
+            <p>Alterne entre os temas claro e escuro.</p>
+            <button class="secondary" id="settingsTheme">Alternar tema</button>
+          </article>
+
+          <article class="panel danger">
+            <h3>Zona de cuidado</h3>
+            <p>Apaga todos os dados armazenados neste navegador.</p>
+            <button class="danger-button" id="resetData">Apagar todos os dados</button>
+          </article>
+        </div>
+
+        <p class="privacy">
+          Seus dados ficam armazenados localmente no navegador.
+          Eles não são enviados para servidores.
+        </p>
+      </section>
+
+      <footer>PRactical 44 · WEB EDITION 0.6</footer>
+    </main>
+  </div>
+
+  <!-- MODAL DE PROJETO -->
+  <dialog id="projectModal">
+    <form id="projectForm">
+      <div class="modal-header">
+        <h2 id="modalTitle">Novo projeto</h2>
+        <button type="button" id="closeModal">✕</button>
+      </div>
+
+      <input type="hidden" id="editId">
+
+      <label>
+        Nome do projeto
+        <input id="projectName" maxlength="70"
+          placeholder="Ex.: Project 44" required>
+      </label>
+
+      <label>
+        Descrição
+        <textarea id="projectDescription" maxlength="300"
+          placeholder="Descreva seu projeto..."></textarea>
+      </label>
+
+      <label>
+        Status
+        <select id="projectStatus">
+          <option value="active">Ativo</option>
+          <option value="paused">Pausado</option>
+          <option value="completed">Concluído</option>
+        </select>
+      </label>
+
+      <div class="modal-actions">
+        <button type="button" class="secondary" id="cancelModal">Cancelar</button>
+        <button type="submit" class="primary">Salvar projeto</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
